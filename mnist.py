@@ -1,199 +1,208 @@
-import numpy
+print('MNIST initializing...')
 
-import keras
-from keras.datasets import mnist
+def teste():
+    return 'teste'
 
-print('========================================================')
+def run(epochs=0, name='simple-mnist-cnn'):
+    import numpy
 
-# loads the MNIST dataset
-(x_train, y_train), (x_test, y_test) = mnist.load_data()
+    import keras
+    from keras.datasets import mnist
 
-# printing the number of samples in x_train, x_test, y_train, y_test
+    print('========================================================')
 
-print("Initial shape or dimensions of x_train" + str(x_train.shape))
+    # loads the MNIST dataset
+    (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
-print()
+    # printing the number of samples in x_train, x_test, y_train, y_test
 
-print("Number of samples in our training data:" + str(len(x_train)))
-print("Number of labels in our training data:" + str(len(y_train)))
+    print("Initial shape or dimensions of x_train" + str(x_train.shape))
 
-print()
+    print()
 
-print("Number of samples in our testing data:" + str(len(x_test)))
-print("Number of labels in our testing data:" + str(len(y_test)))
+    print("Number of samples in our training data:" + str(len(x_train)))
+    print("Number of labels in our training data:" + str(len(y_train)))
 
-print()
+    print()
 
-print("Dimensions of x_train:" + str(x_train[0].shape))
-print("Labels in y_train:" + str(y_train.shape))
+    print("Number of samples in our testing data:" + str(len(x_test)))
+    print("Number of labels in our testing data:" + str(len(y_test)))
 
-print()
+    print()
 
-print("Dimensions of x_test:" + str(x_test[0].shape))
-print("Labels in y_test:" + str(y_test.shape))
+    print("Dimensions of x_train:" + str(x_train[0].shape))
+    print("Labels in y_train:" + str(y_train.shape))
 
-# # # # Using OpenCV
+    print()
 
-# # # # pip install opencv-python
-# # # # pip install opencv-contrib-python
-# # # import cv2
+    print("Dimensions of x_test:" + str(x_test[0].shape))
+    print("Labels in y_test:" + str(y_test.shape))
 
-# # # # Use OpenCV to display 6 random images from our dataset
-# # # for i in range(0, 6):
-# # #     random_num = numpy.random.randint(0, len(x_train))
-# # #     img = x_train[random_num]
-# # #     window_name = 'Random Sample #' + str(i)
-# # #     cv2.imshow(window_name, img)
-# # #     cv2.waitKey(0)
-# # #     cv2.destroyWindow(window_name)
+    # # # # Using OpenCV
 
-# # # cv2.destroyAllWindows()
+    # # # # pip install opencv-python
+    # # # # pip install opencv-contrib-python
+    # # # import cv2
 
-# # # # Using matplotlib
+    # # # # Use OpenCV to display 6 random images from our dataset
+    # # # for i in range(0, 6):
+    # # #     random_num = numpy.random.randint(0, len(x_train))
+    # # #     img = x_train[random_num]
+    # # #     window_name = 'Random Sample #' + str(i)
+    # # #     cv2.imshow(window_name, img)
+    # # #     cv2.waitKey(0)
+    # # #     cv2.destroyWindow(window_name)
 
-# # # import matplotlib.pyplot as plt
+    # # # cv2.destroyAllWindows()
 
-# # # # Plots 6 images, note sublplot's arguments are nrows, ncols, index
-# # # # we set the color map to grey since our image dataset is grayscale
+    # # # # Using matplotlib
 
-# # # plt.subplot(331)
-# # # random_num = numpy.random.randint(0,len(x_train))
-# # # plt.imshow(x_train[random_num], cmap=plt.get_cmap('gray'))
+    # # # import matplotlib.pyplot as plt
 
-# # # plt.subplot(332)
-# # # random_num = numpy.random.randint(0,len(x_train))
-# # # plt.imshow(x_train[random_num], cmap=plt.get_cmap('gray'))
+    # # # # Plots 6 images, note sublplot's arguments are nrows, ncols, index
+    # # # # we set the color map to grey since our image dataset is grayscale
 
-# # # plt.subplot(333)
-# # # random_num = numpy.random.randint(0,len(x_train))
-# # # plt.imshow(x_train[random_num], cmap=plt.get_cmap('gray'))
+    # # # plt.subplot(331)
+    # # # random_num = numpy.random.randint(0,len(x_train))
+    # # # plt.imshow(x_train[random_num], cmap=plt.get_cmap('gray'))
 
-# # # plt.subplot(334)
-# # # random_num = numpy.random.randint(0,len(x_train))
-# # # plt.imshow(x_train[random_num], cmap=plt.get_cmap('gray'))
+    # # # plt.subplot(332)
+    # # # random_num = numpy.random.randint(0,len(x_train))
+    # # # plt.imshow(x_train[random_num], cmap=plt.get_cmap('gray'))
 
-# # # plt.subplot(335)
-# # # random_num = numpy.random.randint(0,len(x_train))
-# # # plt.imshow(x_train[random_num], cmap=plt.get_cmap('gray'))
+    # # # plt.subplot(333)
+    # # # random_num = numpy.random.randint(0,len(x_train))
+    # # # plt.imshow(x_train[random_num], cmap=plt.get_cmap('gray'))
 
-# # # plt.subplot(336)
-# # # random_num = numpy.random.randint(0,len(x_train))
-# # # plt.imshow(x_train[random_num], cmap=plt.get_cmap('gray'))
+    # # # plt.subplot(334)
+    # # # random_num = numpy.random.randint(0,len(x_train))
+    # # # plt.imshow(x_train[random_num], cmap=plt.get_cmap('gray'))
 
-# # # plt.show()
+    # # # plt.subplot(335)
+    # # # random_num = numpy.random.randint(0,len(x_train))
+    # # # plt.imshow(x_train[random_num], cmap=plt.get_cmap('gray'))
 
-print('========================================================')
+    # # # plt.subplot(336)
+    # # # random_num = numpy.random.randint(0,len(x_train))
+    # # # plt.imshow(x_train[random_num], cmap=plt.get_cmap('gray'))
 
-# Lets store the number of rows and columns
-img_rows = x_train[0].shape[0]
-img_cols = x_train[1].shape[0]
+    # # # plt.show()
 
-# Getting our data in the right 'shape' for Keras
-# We need to add a 4th dimension to our data thereby changing our
-# original image shape of (60000, 28, 28) to (60000, 28, 28, 1)
-x_train = x_train.reshape(x_train.shape[0], img_rows, img_cols, 1)
+    print('========================================================')
 
-x_test = x_test.reshape(x_test.shape[0], img_rows, img_cols, 1)
+    # Lets store the number of rows and columns
+    img_rows = x_train[0].shape[0]
+    img_cols = x_train[1].shape[0]
 
-# Store the shape of a single image
-input_shape = (img_rows, img_cols, 1)
+    # Getting our data in the right 'shape' for Keras
+    # We need to add a 4th dimension to our data thereby changing our
+    # original image shape of (60000, 28, 28) to (60000, 28, 28, 1)
+    x_train = x_train.reshape(x_train.shape[0], img_rows, img_cols, 1)
 
-# Change our image type to float32 data type
-x_train = x_train.astype('float32')
-x_test = x_test.astype('float32')
+    x_test = x_test.reshape(x_test.shape[0], img_rows, img_cols, 1)
 
-# Normalize our data by changing the range from (0 to 255) to (0 to 1)
-x_train /= 255
-x_test /= 255
+    # Store the shape of a single image
+    input_shape = (img_rows, img_cols, 1)
 
-print('x_train shape:', x_train.shape)
-print(x_train.shape[0], 'train samples')
-print(x_test.shape[0], 'test samples')
+    # Change our image type to float32 data type
+    x_train = x_train.astype('float32')
+    x_test = x_test.astype('float32')
 
-print('========================================================')
+    # Normalize our data by changing the range from (0 to 255) to (0 to 1)
+    x_train /= 255
+    x_test /= 255
 
-from keras.utils import np_utils
+    print('x_train shape:', x_train.shape)
+    print(x_train.shape[0], 'train samples')
+    print(x_test.shape[0], 'test samples')
 
-# Now we one hot enconde outputs
-y_train = np_utils.to_categorical(y_train)
-y_test = np_utils.to_categorical(y_test)
+    print('========================================================')
 
-# Let's count the number columns in our hot encoded matrix
-print('Number of classes: ' + str(y_test.shape[1]))
+    from keras.utils import np_utils
 
-num_classes = y_test.shape[1]
-num_pixels = x_train.shape[1] * x_train.shape[2]
+    # Now we one hot enconde outputs
+    y_train = np_utils.to_categorical(y_train)
+    y_test = np_utils.to_categorical(y_test)
 
-print('========================================================')
+    # Let's count the number columns in our hot encoded matrix
+    print('Number of classes: ' + str(y_test.shape[1]))
 
-import keras
-from keras.datasets import mnist
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Flatten
-from keras.layers import Conv2D, MaxPooling2D
-from keras import backend as K
-from keras.optimizers import SGD
+    num_classes = y_test.shape[1]
+    num_pixels = x_train.shape[1] * x_train.shape[2]
 
-# create model
-model = Sequential()
+    print('========================================================')
 
-model.add(Conv2D(32, kernel_size=(3, 3),
-          activation='relu' ,
-          input_shape=input_shape))
+    import keras
+    from keras.datasets import mnist
+    from keras.models import Sequential
+    from keras.layers import Dense, Dropout, Flatten
+    from keras.layers import Conv2D, MaxPooling2D
+    from keras import backend as K
+    from keras.optimizers import SGD
 
-model.add(Conv2D(64, (3, 3), activation='relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.25))
-model.add(Flatten())
-model.add(Dense(128, activation='relu'))
-model.add(Dropout(0.5))
-model.add(Dense(num_classes, activation='softmax'))
+    # create model
+    model = Sequential()
 
-model.compile(loss = 'categorical_crossentropy',
-              optimizer = SGD(0.01),
-              metrics = ['accuracy'])
+    model.add(Conv2D(32, kernel_size=(3, 3),
+            activation='relu' ,
+            input_shape=input_shape))
 
-print(model.summary())
+    model.add(Conv2D(64, (3, 3), activation='relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Dropout(0.25))
+    model.add(Flatten())
+    model.add(Dense(128, activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(num_classes, activation='softmax'))
 
-print('========================================================')
+    model.compile(loss = 'categorical_crossentropy',
+                optimizer = SGD(0.01),
+                metrics = ['accuracy'])
 
-batch_size = 32
-epochs = 1
+    print(model.summary())
 
-history = model.fit(x_train,
-                    y_train,
-                    batch_size=batch_size,
-                    epochs=epochs,
-                    verbose=1,
-                    validation_data=(x_test, y_test))
+    print('========================================================')
 
-score = model.evaluate(x_test, y_test, verbose=0)
-print('Test loss:', score[0])
-print('Test accuracy:', score[1])
+    batch_size = 32
 
-print('========================================================')
+    history = model.fit(x_train,
+                        y_train,
+                        batch_size=batch_size,
+                        epochs=int(epochs),
+                        verbose=1,
+                        validation_data=(x_test, y_test))
 
-# Plotting our loss charts
+    score = model.evaluate(x_test, y_test, verbose=0)
+    print('Test loss:', score[0])
+    print('Test accuracy:', score[1])
 
-import matplotlib.pyplot as plt
+    print('========================================================')
 
-history_dict = history.history
+    # Plotting our loss charts
 
-loss_values = history_dict['loss']
-val_loss_values = history_dict['val_loss']
-# acc_values = history_dict['acc']
-# val_acc_values = history_dict['val_acc']
-epochs = range(1, len(loss_values) + 1)
+    import matplotlib.pyplot as plt
 
-line1 = plt.plot(epochs, val_loss_values, label='Validation/Test Loss')
-line2 = plt.plot(epochs, loss_values, label='Training Loss')
-plt.setp(line1, linewidth=2.0, marker='+', markersize=10.0)
-plt.setp(line2, linewidth=2.0, marker='4', markersize=10.0)
-plt.xlabel('Epochs')
-plt.ylabel('Loss')
-plt.grid(True)
-plt.legend()
-plt.show()
+    history_dict = history.history
 
-model.save('C:/mnist_simple_cnn_1Epoch.h5')
-print('Model saved')
+    loss_values = history_dict['loss']
+    val_loss_values = history_dict['val_loss']
+    # acc_values = history_dict['acc']
+    # val_acc_values = history_dict['val_acc']
+    epochs = range(1, len(loss_values) + 1)
+
+    line1 = plt.plot(epochs, val_loss_values, label='Validation/Test Loss')
+    line2 = plt.plot(epochs, loss_values, label='Training Loss')
+    plt.setp(line1, linewidth=2.0, marker='+', markersize=10.0)
+    plt.setp(line2, linewidth=2.0, marker='4', markersize=10.0)
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+
+    import os 
+    model_name = os.getcwd() + '\\' + name + '.h5'
+    model.save(model_name)
+    print('Model saved at ' + model_name)
+
+    return history_dict
