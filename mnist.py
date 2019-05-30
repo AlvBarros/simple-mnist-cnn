@@ -178,31 +178,9 @@ def run(epochs=0, name='simple-mnist-cnn'):
 
     print('========================================================')
 
-    # Plotting our loss charts
-
-    import matplotlib.pyplot as plt
-
-    history_dict = history.history
-
-    loss_values = history_dict['loss']
-    val_loss_values = history_dict['val_loss']
-    # acc_values = history_dict['acc']
-    # val_acc_values = history_dict['val_acc']
-    epochs = range(1, len(loss_values) + 1)
-
-    line1 = plt.plot(epochs, val_loss_values, label='Validation/Test Loss')
-    line2 = plt.plot(epochs, loss_values, label='Training Loss')
-    plt.setp(line1, linewidth=2.0, marker='+', markersize=10.0)
-    plt.setp(line2, linewidth=2.0, marker='4', markersize=10.0)
-    plt.xlabel('Epochs')
-    plt.ylabel('Loss')
-    plt.grid(True)
-    plt.legend()
-    plt.show()
-
     import os 
     model_name = os.getcwd() + '\\' + name + '.h5'
     model.save(model_name)
     print('Model saved at ' + model_name)
 
-    return history_dict
+    return history.history
