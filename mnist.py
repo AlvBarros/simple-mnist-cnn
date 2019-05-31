@@ -179,7 +179,7 @@ def run(epochs=0, name='simple-mnist-cnn'):
     print('========================================================')
 
     import os 
-    model_name = os.getcwd() + '\\' + name + '.h5'
+    model_name = os.getcwd() + '/models/' + name + '.h5'
     model.save(model_name)
     print('Model saved at ' + model_name)
 
